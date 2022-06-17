@@ -7,7 +7,7 @@ import { Button, Table, Image, Space, Popover } from "antd"
 import moment from 'moment';
 import { AiFillEye, AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
 import { parse } from 'graphql';
-
+import { showNotification } from "../components/notification/main"
 
 const popoverContent = (
   <div>
@@ -25,6 +25,7 @@ export default function Home(props) {
     setLoading(true)
     const tempArr = [...tableData];
 
+
     switch (type) {
       case "increase":
         tempArr[index] = {
@@ -33,15 +34,17 @@ export default function Home(props) {
         }
         break;
       case "decrease":
-        tempArr[index] = {
-          ...tempArr[index],
-          rate: tempArr[index].rate - 1
+        if (tempArr[index].rate === 0) showNotification("warning", "Uyarı", "Oy oranı 0'dan daha düşük değer olamaz :)")
+        else {
+          tempArr[index] = {
+            ...tempArr[index],
+            rate: tempArr[index].rate - 1
+          }
         }
         break;
       default: console.log("hello world")
 
     }
-
     setTableData(tempArr)
     setLoading(false)
   }
@@ -57,7 +60,7 @@ export default function Home(props) {
         date: moment(data.launch_date_local).format("DD/MM/YYYY"),
         image: data.ships.length !== 0 ? data.ships[0].image : null,
         address: data.rocket.rocket_name,
-        rate: parseInt(Math.random() * 100)
+        rate: 0
       }
     })
     console.log(props.data.launchesPast)
@@ -107,12 +110,8 @@ export default function Home(props) {
       key: 'action',
       render: (data) => (
         <Space size="middle">
-          <Popover content={popoverContent}>
-            <Button onClick={() => handleRate("increase", data.index, data.key)} size='large' icon={<AiOutlineArrowUp size={30} color="green" />} />
-          </Popover>
-          <Popover content={popoverContent}>
-            <Button onClick={() => handleRate("decrease", data.index, data.key)} size='large' icon={<AiOutlineArrowDown color="red" size={30} />} />
-          </Popover>
+          <Button onClick={() => handleRate("increase", data.index, data.key)} size='large' icon={<AiOutlineArrowUp size={30} color="green" />} />
+          <Button onClick={() => handleRate("decrease", data.index, data.key)} size='large' icon={<AiOutlineArrowDown color="red" size={30} />} />
         </Space>
       )
     },
