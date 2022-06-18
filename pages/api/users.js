@@ -2,9 +2,9 @@ let users = []
 
 
 const postMethod = (json) => {
+    console.log(json)
     try {
-        const tempArr = [];
-        tempArr.push(json)
+        const tempArr = JSON.parse(json);
         users = tempArr;
         return true
     }

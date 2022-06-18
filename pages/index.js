@@ -67,6 +67,8 @@ export default function Home(props) {
 
 
   useEffect(() => {
+
+
     const tempArr = props.data.launchesPast.map((data, index) => {
       return {
         key: index,

@@ -27,38 +27,6 @@ const getMethod = () => {
     }
 }
 
-const deleteMethod = (dataID) => {
-    try {
-        const tempArr = messages.filter((val) => val.id !== parseInt(dataID))
-        messages = tempArr
-        return true
-    }
-    catch {
-        return false
-    }
-}
-
-const putMethod = (data) => {
-    const value = JSON.parse(data)
-    try {
-        const tempArr = messages.map((val) => {
-            if (val.id !== parseInt(value.id)) return val
-            else {
-                return {
-                    ...val,
-                    name: value.name
-                }
-            }
-        })
-        messages = tempArr
-        return true
-    }
-    catch {
-        return false
-    }
-}
-
-
 
 
 export default async function handler(req, res) {
@@ -82,26 +50,6 @@ export default async function handler(req, res) {
                 res.status(400).json({ message: "Error" });
             }
 
-            break;
-
-        case "PUT":
-
-            const putResult = await putMethod(req.body)
-            if (putResult) {
-                res.status(200).json({ message: "Success put method" });
-            } else {
-                res.status(400).json({ message: "Error" });
-            }
-
-            break;
-
-        case "DELETE":
-            const deleteResult = await deleteMethod(req.body)
-            if (deleteResult) {
-                res.status(200).json({ message: "Success delete method" });
-            } else {
-                res.status(400).json({ message: "Error" });
-            }
             break;
 
         default: res.status(400).json({ name: 'error' }); break;
