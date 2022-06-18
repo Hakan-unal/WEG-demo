@@ -1,16 +1,12 @@
-let messages = []
+let logs = []
 
 
 const postMethod = (json) => {
     try {
-        const tempArr = [...messages];
-        const obj = {
-            name: json,
-            id: parseInt(Math.random() * 1000000)
-        }
-        tempArr.push(obj)
-        messages = tempArr;
-        return obj
+        const tempArr = [...logs];
+        tempArr.push(json)
+        logs = tempArr;
+        return true
     }
     catch {
         return false
@@ -19,7 +15,8 @@ const postMethod = (json) => {
 
 const getMethod = () => {
     try {
-        const tempArr = [...messages];
+        const tempArr = [...logs];
+        console.log(tempArr)
         return tempArr
     }
     catch {

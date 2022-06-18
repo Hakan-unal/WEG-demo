@@ -15,6 +15,9 @@ export default function Home(props) {
     const { Meta } = Card;
     const router = useRouter()
 
+
+
+
     useEffect(() => {
         fetch('api/user')
             .then((res) => res.json())

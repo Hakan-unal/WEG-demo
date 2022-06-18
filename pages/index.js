@@ -28,19 +28,22 @@ export default function Home(props) {
   const router = useRouter()
 
 
-  const handleRate = (type, ID, index) => {
+  const handleRate = async (type, ID, index) => {
     setLoading(true)
     const tempArr = [...tableData];
 
 
     switch (type) {
       case "increase":
+        await handlePostLog("click", "increaseButton")
+
         tempArr[index] = {
           ...tempArr[index],
           rate: tempArr[index].rate + 1
         }
         break;
       case "decrease":
+        await handlePostLog("click", "decreaseButton")
         if (tempArr[index].rate === 0) showNotification("warning", "Uyarı", "Oy oranı 0'dan daha düşük değer olamaz :)")
         else {
           tempArr[index] = {
@@ -57,13 +60,27 @@ export default function Home(props) {
   }
 
 
-  const handleDetail = (data) => {
+  const handleDetail = async (data) => {
+    await handlePostLog("click", "detailButton")
     fetch('api/user', { method: 'POST', body: JSON.stringify(data) })
       .then((res) => {
         dispatch(addUser(data))
         router.push("employee")
       })
   }
+
+  const handlePostLog = (type, name) => {
+    const data = {
+      type: type,
+      name: name,
+      date: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
+    }
+    fetch('api/log', { method: 'POST', body: JSON.stringify(data) })
+      .then((res) => {
+        console.log(res)
+      })
+  }
+
 
 
   useEffect(() => {
