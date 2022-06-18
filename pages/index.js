@@ -8,6 +8,8 @@ import moment from 'moment';
 import { AiFillEye, AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
 import { parse } from 'graphql';
 import { showNotification } from "../components/notification/main"
+import { wrapper } from "../store/store";
+import { addUser } from '../store/users/action';
 
 const popoverContent = (
   <div>
@@ -64,6 +66,11 @@ export default function Home(props) {
       }
     })
     console.log(props.data.launchesPast)
+    console.log(props.getStore)
+
+
+
+    props.dispatch(addUser("merhaba"))
     setTableData(tempArr)
     setLoading(false)
   }, [])
@@ -148,7 +155,7 @@ export default function Home(props) {
 }
 
 
-export async function getStaticProps() {
+export const getStaticProps = wrapper.getStaticProps(store => async ({ preview }) => {
   const { data } = await client.query({
     query: gql`
       query GetLaunches {
@@ -169,9 +176,17 @@ export async function getStaticProps() {
     `,
   });
 
+  console.log(store.getState())
+  console.log(store.dispatch(addUser("hakan")))
+  console.log(store.dispatch(addUser("test")))
+  console.log(store.getState())
+
   return {
     props: {
       data: data,
+      store: () => store.dispatch()
     },
   };
 }
+)
+
