@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.scss'
 import { Button, Table, Image, Space, Popover, Avatar, Card } from "antd"
 import moment from 'moment';
 import { AiFillEye, AiOutlineArrowUp, AiOutlineArrowDown, AiOutlineLeft } from "react-icons/ai";
