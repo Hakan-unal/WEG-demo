@@ -1,26 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { gql } from "@apollo/client";
-import client from "../apollo-client";
-import { Button, Table, Image, Space, Popover } from "antd"
+import { Button, Table, Image, Space, Popover, Avatar, Card } from "antd"
 import moment from 'moment';
-import { AiFillEye, AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
-import { parse } from 'graphql';
-
+import { AiFillEye, AiOutlineArrowUp, AiOutlineArrowDown, AiOutlineLeft } from "react-icons/ai";
+import { wrapper } from "../store/store";
+import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import { useRouter } from "next/router"
 
 
 export default function Home(props) {
 
-
-
+    const [data, setDate] = useState(null)
+    const { Meta } = Card;
+    const router = useRouter()
 
     useEffect(() => {
-        console.log("hello world")
+        fetch('api/user')
+            .then((res) => res.json())
+            .then((res) => {
+                if (res.data.length === 0) router.push("/")
+                else setDate(JSON.parse(res.data[0]))
+
+            })
     }, [])
-
-
-
 
 
     return (
@@ -32,9 +35,29 @@ export default function Home(props) {
             </Head>
 
             <main className={styles.main}>
-                merhaba
+                <Card
+                    style={{ width: 500 }}
+                    cover={
+                        <img
+                            alt="example"
+                            src={data?.image}
+                        />
+                    }
+                >
+                    <Meta
+                        avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
+                        title={data?.name}
+                        description={data?.date}
+                    />
+                    <div>Oy: {data?.rate}</div>
+                    <div>Dahili No: {data?.index}</div>
+                    <div>Departman: {data?.address}</div>
+
+                </Card>
 
             </main>
         </div>
     )
 }
+
+
