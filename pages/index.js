@@ -181,7 +181,7 @@ export default function Home(props) {
 
       <main className={styles.main}>
         <nav>
-          <Button onClick={() => handleGoGithub()} icon={<AiFillGithub />}></Button>
+          <Button size='large' onClick={() => handleGoGithub()} icon={<AiFillGithub size={30} />}></Button>
         </nav>
         <Table loading={loading} dataSource={tableData} columns={columns} />;
 
