@@ -12,9 +12,15 @@ import { wrapper } from "../store/store";
 import { addUser } from '../store/users/action';
 import { useRouter } from "next/router"
 
-const popoverContent = (
+const detailPopoverContent = (
   <div>
     Personelin detaylı görünümü için tıklayınız
+  </div>
+);
+
+const githubPopoverContent = (
+  <div>
+    Uygulama kaynak kodu için tıklayınız
   </div>
 );
 
@@ -161,7 +167,7 @@ export default function Home(props) {
       key: 'action',
       render: (data) => (
         <Space size="middle">
-          <Popover content={popoverContent}>
+          <Popover content={detailPopoverContent}>
             <Button onClick={() => handleDetail(data)} size="large" icon={<AiFillEye />} />
           </Popover>
         </Space>
@@ -180,9 +186,9 @@ export default function Home(props) {
       </Head>
 
       <main className={styles.main}>
-        <nav>
+        <Popover content={githubPopoverContent}>
           <Button size='large' onClick={() => handleGoGithub()} icon={<AiFillGithub size={30} />}></Button>
-        </nav>
+        </Popover>
         <Table loading={loading} dataSource={tableData} columns={columns} />;
 
       </main>
