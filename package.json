@@ -22,7 +22,8 @@
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.4.1"
+    "redux-thunk": "^2.4.1",
+    "sass": "^1.52.3"
   },
   "devDependencies": {
     "eslint": "8.17.0",

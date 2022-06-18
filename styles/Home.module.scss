@@ -1,3 +1,9 @@
+$display-flex: flex;
+$center: center;
+$blue-color: #0070f3;
+$one: 1;
+
+
 .container {
   padding: 0 2rem;
 }
@@ -6,30 +12,30 @@
   min-height: 100vh;
   padding: 4rem 0;
   flex: 1;
-  display: flex;
+  display: $display-flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: $center;
+  align-items: $center;
 }
 
 .footer {
-  display: flex;
-  flex: 1;
+  display: $display-flex;
+  flex: $one;
   padding: 2rem 0;
   border-top: 1px solid #eaeaea;
-  justify-content: center;
-  align-items: center;
+  justify-content: $center;
+  align-items: $center;
 }
 
 .footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
+  display: $display-flex;
+  justify-content: $center;
+  align-items: $center;
+  flex-grow: $one;
 }
 
 .title a {
-  color: #0070f3;
+  color: $blue-color;
   text-decoration: none;
 }
 
@@ -47,7 +53,7 @@
 
 .title,
 .description {
-  text-align: center;
+  text-align: $center;
 }
 
 .description {
@@ -66,9 +72,9 @@
 }
 
 .grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: $display-flex;
+  align-items: $center;
+  justify-content: $center;
   flex-wrap: wrap;
   max-width: 800px;
 }
@@ -88,8 +94,8 @@
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+  color: $blue-color;
+  border-color: $blue-color;
 }
 
 .card h2 {

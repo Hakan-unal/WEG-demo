@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from "react-redux"
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.scss'
 import { gql } from "@apollo/client";
 import client from "../apollo-client";
 import { Button, Table, Image, Space, Popover } from "antd"
 import moment from 'moment';
-import { AiFillEye, AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
+import { AiFillEye, AiOutlineArrowUp, AiOutlineArrowDown, AiFillGithub } from "react-icons/ai";
 import { showNotification } from "../components/notification/main"
 import { wrapper } from "../store/store";
 import { addUser } from '../store/users/action';
@@ -79,6 +79,11 @@ export default function Home(props) {
       .then((res) => {
         console.log(res)
       })
+  }
+
+  const handleGoGithub = () => {
+    router.push("https://github.com/Hakan-unal/WEG-demo")
+
   }
 
 
@@ -175,7 +180,9 @@ export default function Home(props) {
       </Head>
 
       <main className={styles.main}>
-
+        <nav>
+          <Button onClick={() => handleGoGithub()} icon={<AiFillGithub />}></Button>
+        </nav>
         <Table loading={loading} dataSource={tableData} columns={columns} />;
 
       </main>

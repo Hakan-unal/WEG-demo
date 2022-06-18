@@ -1,5 +1,6 @@
 import '../styles/globals.css'
-import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+import 'antd/dist/antd.css';
+
 import { wrapper } from '../store/store'
 
 function MyApp({ Component, pageProps }) {
