@@ -11,7 +11,7 @@ import { useRouter } from "next/router"
 
 export default function Home(props) {
 
-    const [data, setDate] = useState(null)
+    const [data, setData] = useState(null)
     const { Meta } = Card;
     const router = useRouter()
 
@@ -23,7 +23,7 @@ export default function Home(props) {
             .then((res) => res.json())
             .then((res) => {
                 if (res.data.length === 0) router.push("/")
-                else setDate(JSON.parse(res.data[0]))
+                else setData(JSON.parse(res.data[0]))
 
             })
     }, [])
