@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from "react-redux"
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { gql } from "@apollo/client";
@@ -21,6 +22,8 @@ export default function Home(props) {
 
   const [tableData, setTableData] = useState([])
   const [loading, setLoading] = useState(true)
+
+  const dispatch = useDispatch();
 
 
   const handleRate = (type, ID, index) => {
@@ -65,12 +68,10 @@ export default function Home(props) {
         rate: 0
       }
     })
-    console.log(props.data.launchesPast)
-    console.log(props.getStore)
+
+    dispatch(addUser({ name: "test", surname: "test1", tel: "0912301293" }))
 
 
-
-    props.dispatch(addUser("merhaba"))
     setTableData(tempArr)
     setLoading(false)
   }, [])
@@ -176,15 +177,9 @@ export const getStaticProps = wrapper.getStaticProps(store => async ({ preview }
     `,
   });
 
-  console.log(store.getState())
-  console.log(store.dispatch(addUser("hakan")))
-  console.log(store.dispatch(addUser("test")))
-  console.log(store.getState())
-
   return {
     props: {
       data: data,
-      store: () => store.dispatch()
     },
   };
 }

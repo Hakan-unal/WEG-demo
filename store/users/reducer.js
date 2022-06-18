@@ -3,7 +3,7 @@
 import { usersActionTypes } from "./action";
 
 const usersInitialState = {
-    users: ["asdasd"]
+    users: []
 };
 
 export default function reducer(state = usersInitialState, action) {
