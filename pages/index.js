@@ -178,7 +178,7 @@ export default function Home(props) {
 
 
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>Rate List</title>
         <meta name="description" content="Follow The White Rabbit" />
@@ -192,7 +192,7 @@ export default function Home(props) {
         <Table loading={loading} dataSource={tableData} columns={columns} />;
 
       </main>
-    </div>
+    </>
   )
 }
 
